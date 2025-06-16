@@ -1,15 +1,2 @@
 pub mod user;
-pub mod ai_model;
-pub mod system_config;
-pub mod user_preference;
-pub mod folder;
-pub mod user_session;
-pub mod system_log;
-pub mod prompt_template;
-pub mod daily_usage;
-pub mod chat;
-pub mod prompt;
-pub mod token_transaction;
-pub mod shared_chat;
-pub mod template_rating;
 pub mod dto;

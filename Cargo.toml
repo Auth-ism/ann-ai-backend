@@ -16,7 +16,7 @@ serde = { version = "1", features = ["derive"] } # Rust struct'larını JSON'a/J
 serde_json = "1" # JSON işlemleri için
 
 # Veritabanı (PostgreSQL)
-sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono", "macros"] } # Asenkron PostgreSQL istemcisi
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono", "macros", "bigdecimal "] } # Asenkron PostgreSQL istemcisi
 
 # Şifre Hashleme
 argon2 = "0.5" # Güvenli şifre hashleme için (veya bcrypt = "0.15")

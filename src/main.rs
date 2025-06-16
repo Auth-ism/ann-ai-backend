@@ -6,6 +6,7 @@ mod services;
 mod utils;
 mod app_state;
 mod config;
+mod models;
 
 fn main() {
 	// Entry point of the application
