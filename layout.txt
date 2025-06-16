@@ -1,0 +1,75 @@
+.
+├── Cargo.toml
+├── .env.example
+├── SQL_SCHEMA.sql         # Veritabanı şemanızın tamamı burada olabilir
+├── src/
+│   ├── main.rs                  # Uygulama başlatma, router kurulumu
+│   ├── app_state.rs             # Uygulama durumu (DB bağlantı havuzu, konfigürasyon)
+│   ├── config.rs                # Uygulama yapılandırması (AppConfig struct)
+│   ├── error.rs                 # Özel hata türleri ve Axum IntoResponse uygulamaları
+│   ├── middleware/              # Global middleware'lar (Auth, Logger, CORS)
+│   │   ├── mod.rs
+│   │   └── auth.rs              # JWT doğrulama middleware'ı
+│   │   └── logger.rs
+│   ├── models/                  # DB tablolarına karşılık gelen Struct'lar (SQLx FromRow, QueryAs)
+│   │   ├── mod.rs               # Tüm modelleri dışa aktarır
+│   │   ├── user.rs              # UserInfo, UserRole Enum
+│   │   ├── ai_model.rs          # AiModel
+│   │   ├── system_config.rs     # SystemConfig
+│   │   ├── user_preference.rs   # UserPreference
+│   │   ├── folder.rs            # Folder
+│   │   ├── user_session.rs      # UserSession
+│   │   ├── system_log.rs        # SystemLog
+│   │   ├── prompt_template.rs   # PromptTemplate
+│   │   ├── daily_usage.rs       # DailyUserUsage, UsageStatistics
+│   │   ├── chat.rs              # Chat, Summary, SharedChat, ShareComment
+│   │   ├── prompt.rs            # Prompt
+│   │   ├── token_transaction.rs # TokenTransaction, TransactionType Enum
+│   │   └── shared_chat.rs
+│   │   └── template_rating.rs
+│   │   └── dto/                 # Data Transfer Objects (Request/Response payloadları)
+│   │       ├── mod.rs
+│   │       ├── auth.rs          # LoginRequest, RegisterRequest, AuthResponse
+│   │       ├── chat.rs          # CreateChatRequest, ChatResponse
+│   │       └── user.rs          # UpdateUserRequest, UserResponse
+│   ├── repositories/            # Veritabanı CRUD işlemleri (Doğrudan SQLx sorguları)
+│   │   ├── mod.rs               # Tüm repoları dışa aktarır
+│   │   ├── user.rs              # CRUD for user_info
+│   │   ├── ai_model.rs          # CRUD for ai_model
+│   │   ├── chat.rs              # CRUD for chats, prompts, summaries, shared_chats, share_comments
+│   │   ├── prompt_template.rs   # CRUD for prompt_templates, template_ratings
+│   │   ├── system_config.rs     # CRUD for system_config
+│   │   └── token_transaction.rs # CRUD for token_transactions
+│   │   └── usage.rs             # CRUD for daily_user_usage, usage_statistics
+│   ├── services/                # İş mantığı, birden fazla repo/model ile etkileşim
+│   │   ├── mod.rs               # Tüm servisleri dışa aktarır
+│   │   ├── auth.rs              # User registration, login, JWT generation/validation
+│   │   ├── user.rs              # User profile management, token balance updates
+│   │   ├── chat.rs              # Chat creation, message handling (interacts with AI service)
+│   │   ├── ai_integration.rs    # Calls to external AI models (e.g., Google Gemini API)
+│   │   ├── folder.rs            # Folder management
+│   │   └── analytics.rs         # Usage statistics, daily usage updates
+│   ├── handlers/                # HTTP isteklerini karşılar, servisleri çağırır
+│   │   ├── mod.rs               # Tüm handler'ları dışa aktarır
+│   │   ├── auth.rs              # /api/auth routes
+│   │   ├── user.rs              # /api/users routes
+│   │   ├── chat.rs              # /api/chats, /api/prompts, /api/summaries routes
+│   │   ├── model.rs             # /api/ai_models routes
+│   │   ├── folder.rs            # /api/folders routes
+│   │   ├── template.rs          # /api/templates, /api/template_ratings routes
+│   │   └── admin.rs             # /api/admin/* (system_config, logs, user management for admins)
+│   ├── routers/                 # Axum Router tanımları
+│   │   ├── mod.rs               # Tüm router'ları birleştirir
+│   │   ├── auth.rs              # Auth routes
+│   │   ├── user.rs              # User routes
+│   │   ├── chat.rs              # Chat, Prompt, Summary routes
+│   │   ├── model.rs             # AI Model routes
+│   │   ├── folder.rs            # Folder routes
+│   │   ├── template.rs          # Prompt Template routes
+│   │   └── admin.rs             # Admin specific routes
+│   ├── utils/                   # Yardımcı fonksiyonlar (şifreleme, JWT, validation helpers)
+│   │   ├── mod.rs               # Tüm util'leri dışa aktarır
+│   │   ├── password.rs          # Password hashing (argon2)
+│   │   ├── jwt.rs               # JWT token operations (jsonwebtoken)
+│   │   └── validation.rs        # Custom validation logic if any
+│   └── tests/                   # Entegrasyon ve birim testleri
