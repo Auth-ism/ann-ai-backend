@@ -1,8 +1,8 @@
 use sqlx::PgPool;
+use sqlx::postgres::PgPoolOptions;
 use deadpool_redis::Pool as RedisPool;
 use std::sync::Arc;
-use crate::config::AppConfig; 
-
+use crate::config::AppConfig; // Add missing import
 
 #[derive(Clone)] 
 pub struct AppState {
@@ -14,9 +14,9 @@ pub struct AppState {
 
 impl AppState {
     pub async fn new(config: AppConfig) -> Result<Arc<Self>, Box<dyn std::error::Error>> {
-        let db_pool = sqlx::PgPoolOptions::new()
+        let db_pool = PgPoolOptions::new()
             .max_connections(5)
-            .connect_timeout(std::time::Duration::from_secs(5))
+            .acquire_timeout(std::time::Duration::from_secs(5))
             .connect(&config.database_url)
             .await?;
 
@@ -24,14 +24,14 @@ impl AppState {
             .run(&db_pool)
             .await?;
 
-        let redis_cfg = deadpool_redis::Config::from_url(config.redis_url.clone());
+        let redis_cfg = deadpool_redis::Config::from_url(&config.redis_url);
         let redis_pool = redis_cfg.create_pool(Some(deadpool_redis::Runtime::Tokio1))?;
 
         Ok(Arc::new(AppState {
             db: db_pool,
             redis_pool,
             jwt_secret: config.jwt_secret.clone(),
-            config: config,
+            config, // Simplified field assignment
         }))
     }
 }
