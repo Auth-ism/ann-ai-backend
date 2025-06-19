@@ -1,5 +1,5 @@
-use serde::Deserialize;
 use dotenvy::dotenv;
+use serde::Deserialize;
 use std::env;
 
 #[derive(Debug, Deserialize, Clone)]
@@ -9,7 +9,7 @@ pub struct AppConfig {
     pub redis_url: String,
     pub host: String,
     pub port: u16,
-    pub llm_api_key: String,
+    pub admin_registration_code: String
 }
 
 impl AppConfig {

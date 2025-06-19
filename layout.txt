@@ -1,7 +1,7 @@
 .
 ├── Cargo.toml
 ├── .env.example
-├── SQL_SCHEMA.sql         # Veritabanı şemanızın tamamı burada olabilir
+├── SQL_SCHEMA.sql              # Veritabanı şemanızın tamamı burada olabilir
 ├── src/
 │   ├── main.rs                  # Uygulama başlatma, router kurulumu
 │   ├── app_state.rs             # Uygulama durumu (DB bağlantı havuzu, konfigürasyon)

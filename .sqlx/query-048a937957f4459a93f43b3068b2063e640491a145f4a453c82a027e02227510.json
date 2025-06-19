@@ -1,0 +1,111 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        INSERT INTO user_info (username, full_name, email, password_hash, phone_number, user_role)\n        VALUES ($1, $2, $3, $4, $5, $6)\n        RETURNING id, username, full_name, email, password_hash, phone_number,\n                  token_balance, user_role as \"user_role: UserRole\",\n                  subscription_expries, email_verified, phone_verified, \n                  last_login, is_active, created_at, updated_at\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "username",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "full_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "email",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 4,
+        "name": "password_hash",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "phone_number",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 6,
+        "name": "token_balance",
+        "type_info": "Numeric"
+      },
+      {
+        "ordinal": 7,
+        "name": "user_role: UserRole",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 8,
+        "name": "subscription_expries",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 9,
+        "name": "email_verified",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 10,
+        "name": "phone_verified",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 11,
+        "name": "last_login",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 12,
+        "name": "is_active",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 13,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 14,
+        "name": "updated_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar",
+        "Varchar"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "048a937957f4459a93f43b3068b2063e640491a145f4a453c82a027e02227510"
+}
