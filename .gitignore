@@ -1,2 +1,19 @@
-/target
+
+
+# Özel ortam değişkenleri veya yapılandırmaları
 .env
+.env.*
+
+# Veritabanı ve Redis verileri
+/data/
+/volumes/
+
+# Rust ile ilgili klasörler
+/target/
+**/*.rs.bk
+
+# Diğer geliştirici araçları
+.idea/
+.vscode/
+*.swp
+*.swo
