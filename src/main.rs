@@ -3,8 +3,7 @@ mod config;
 mod error;
 mod handlers;
 mod models;
-#[path = "repositories/mod.rs"]
-pub mod repositories;
+mod repositories;
 mod services;
 mod utils;
 mod extension;

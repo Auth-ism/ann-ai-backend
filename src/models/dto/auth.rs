@@ -46,7 +46,7 @@ pub struct Claims {
 impl Claims {
     pub fn from_user(user: &crate::models::user::User) -> Self {
         let now = chrono::Utc::now().timestamp() as usize;
-        let exp = now + 3600; // 1 hour expiry, adjust as needed
+        let exp = now + 3600; 
         Claims {
             user_id: user.id,
             exp,

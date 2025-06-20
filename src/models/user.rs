@@ -14,6 +14,15 @@ pub enum UserRole {
     Guest,
 }
 
+impl From<String> for UserRole {
+    fn from(role: String) -> Self {
+        match role.as_str() {
+            "admin" => UserRole::Admin,
+            "user" => UserRole::User,
+            _ => UserRole::User, 
+        }
+    }
+}
 // Add Display implementation for UserRole
 impl fmt::Display for UserRole {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

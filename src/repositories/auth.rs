@@ -59,21 +59,3 @@ pub async fn find_by_username_or_email(
     let user = User::try_from(user_schema)?;
     Ok(user)
 }
-
-pub async fn find_by_id(db: &PgPool, user_id: i32) -> Result<Option<User>, AppError> {
-    let user = sqlx::query_as!(
-        UserSchema,
-        r#"
-        SELECT id, username, full_name, email, password_hash, phone_number, token_balance, user_role as "user_role: UserRole",
-                    subscription_expries, email_verified, phone_verified, last_login, is_active, created_at, updated_at
-        FROM user_info 
-        WHERE id = $1  
-        "#,
-        user_id
-    )
-    .fetch_optional(db)
-    .await?
-    .map(User::try_from)
-    .transpose()?;
-    Ok(user)
-}
